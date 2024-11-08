@@ -1,6 +1,6 @@
 import { Consumer } from "../../models/consumer.js";
 
-export const authRouter = async (req, res)=>{
+export const authControllerConsumer = async (req, res)=>{
     try {
         const { email, picture, name } = req.user;
         const user = await Consumer.findOne({email});

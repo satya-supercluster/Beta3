@@ -1,21 +1,7 @@
-import { Provider } from "../../models/provider";
+import { Router } from "express";
+import { EditProfile } from "../../controller/Provider/editProfile";
+import { authControllerProvider } from "../../controller/Provider/authControllerProvider";
 
-export const EditProfile = async (req, res)=>{
-    try {
-        const { email, name, location, contact  } = req.body;
-        const updateProfile = await Provider.findOneAndUpdate({email},{
-            name,
-            location,
-            contact 
-        });
-        if(updateProfile){
-            return res.status(200).json({
-                message:"Successfully Updated"
-            });
-        }
-    } catch (error) {
-        return res.status(500).json({
-            message:error.message
-        })
-    }
-}
+export const providerRoute = Router();
+providerRoute.post("/editProfile",EditProfile);
+providerRoute.post('/', authControllerProvider);

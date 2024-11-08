@@ -1,6 +1,6 @@
 import { Provider } from "../../models/provider.js";
 
-export const authRouter = async (req, res)=>{
+export const authControllerProvider = async (req, res)=>{
     try {
         const { userId, email, picture, name } = req.user;
         const user = await Provider.findOne({email});
