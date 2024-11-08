@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Background = () => {
+const HeroSection = () => {
   const [bgIndex, setBgIndex] = useState(0);
   const backgroundImages = [
     "https://thumbs.dreamstime.com/b/charity-food-poor-people-to-enjoy-eating-139435186.jpg",
@@ -29,4 +29,4 @@ const Background = () => {
   );
 };
 
-export default Background;
+export default HeroSection;

@@ -1,5 +1,9 @@
 import React from 'react'
-
+import { Routes, Route } from "react-router-dom"
+import Layout from "./layout/Layout"
+import { useAuth } from './context/AuthContext'
+import { useUserType } from './context/UserTypeContext'
+import HeroSection from './pages/Hero/Hero'
 const App = () => {
   return (
     <Routes>
