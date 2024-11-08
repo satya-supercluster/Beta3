@@ -18,6 +18,9 @@ const consumer = new mongoose.Schema({
     },
     location:{
         type:String
+    },
+    avatar:{
+        type:String
     }
 });
 
