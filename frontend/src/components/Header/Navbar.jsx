@@ -10,7 +10,7 @@ const Navi = ({ menuOpen, toggleMenu }) => {
         onClick={toggleMenu}
         className="sm:hidden text-white focus:outline-none"
       >
-        <svg
+        <svg 
           className="w-8 h-8"
           fill="none"
           stroke="currentColor"
