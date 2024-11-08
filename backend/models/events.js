@@ -19,6 +19,11 @@ const events = new mongoose.Schema({
         type:Number,
         default:0,
     },
+    provider:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Provider",
+        required:true
+    },
     location:{
         type:String
     },

@@ -10,14 +10,20 @@ const provider = new mongoose.Schema({
         // required:true,
         unique:true,
     },
+    contact:{
+        type:String,
+    },
     password: {
         type: String,
         // required: true,
         minlength: 5
     },
-    events:{
-        type:Array
-    },
+    events:[
+        {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Events",
+        }
+],
     location:{
         type:String
     },
