@@ -1,4 +1,4 @@
-const admin = require("firebase-admin");
+export const admin = require("firebase-admin");
 
 const serviceAccount = {
   type: process.env.TYPE,
@@ -16,4 +16,3 @@ const serviceAccount = {
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
-module.exports = admin;
