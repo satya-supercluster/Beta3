@@ -1,4 +1,5 @@
 import React from 'react'
+import EventPage from './pages/EventPage/EventPage'
 import { Routes, Route } from "react-router-dom"
 import Layout from "./layout/Layout"
 import { useAuth } from './context/AuthContext'
