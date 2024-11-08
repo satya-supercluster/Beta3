@@ -1,12 +1,15 @@
 // Requires
-const express = require("express"),
-  app = express();
-const dotenv = require("dotenv");
+import express from "express";
+import dotenv from "dotenv";
+import morgan from "morgan";
+import bodyParser from "body-parser";
+import cors from "cors";
 dotenv.config();
-const morgan = require("morgan");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-require("./config/mongo/mongo-con");
+const app = express();
+
+// Mongoose Connection
+import {connectDB} from "./config/mongo/mongo-con.js";
+connectDB();
 // Checking the server
 app.get("/", (req, res) => {
   res.send("Everything is alright");
