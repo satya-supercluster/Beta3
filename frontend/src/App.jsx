@@ -5,9 +5,11 @@ import Layout from "./layout/Layout"
 import { useAuth } from './context/AuthContext'
 import { useUserType } from './context/UserTypeContext'
 import HeroSection from './pages/Hero/Hero'
+import Login from './pages/Login/Login'
 const App = () => {
   return (
     <Routes>
+      <Route path='/event' element={<EventPage />} />
       <Route path="/" element={<Layout />}>
         <Route index element={<AuthenticatedRoute />} />
 
@@ -16,7 +18,7 @@ const App = () => {
         {/* Consumer Routes */}
         
       </Route>
-      <Route path="/*" element={<CatchAllRoutes />}></Route>
+      {/* <Route path="/*" element={<CatchAllRoutes />}></Route> */}
     </Routes>
   );
 }

@@ -48,7 +48,7 @@ const ClockIcon = () => (
   </svg>
 );
 
-const EventCard = ({ name, date, venue, quantity, expectedWastage, provider, location, duration }) => {
+const EventCard = ({ name, date, venue, quantity, expectedWastage, location, duration }) => {
   const formattedDate = new Date(date).toLocaleDateString('en-US', {
     weekday: 'long',
     year: 'numeric',
@@ -124,15 +124,7 @@ const EventCard = ({ name, date, venue, quantity, expectedWastage, provider, loc
               </div>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors duration-200">
-              <div className="flex items-center space-x-3">
-                <ClockIcon />
-                <div>
-                  <p className="text-xs text-gray-500 font-medium">Provider ID</p>
-                  <p className="text-sm font-semibold text-gray-900">{provider}</p>
-                </div>
-              </div>
-            </div>
+
           </div>
 
           {/* Action Button */}

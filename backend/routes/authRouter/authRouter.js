@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { providerRoute } from "../Provider/editProfile";
-import { consumerRoute } from "../Consumer/consumerRoute";
+import { authControllerConsumer } from "../../controller/Consumer/authControllerConsumer.js";
+import { authControllerProvider } from "../../controller/Provider/authControllerProvider.js";
 
 export const authRouter = Router();
 
-authRouter.use('/provider', providerRoute);
-authRouter.use('/consumer', consumerRoute);
+authRouter.post('/provider', authControllerProvider);
+authRouter.post('/consumer', authControllerConsumer);
