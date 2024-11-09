@@ -42,6 +42,10 @@ const events = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  isSubscribed:{
+    type:Boolean,
+    default:false
+  }
 });
 
 const Events = mongoose.model("Events", events);
