@@ -26,7 +26,7 @@ const verifyToken = require("./middleware/verifyToken.js");
 
 
 //Routes
-const consumerRoute = require("./routes/Consumer/consumerRoute.js");
+const consumerRoute = require("./routes/Consumer/consumerRoutes.js");
 const authRouter = require("./routes/authRouter/authRouter.js");
 const providerRoute = require("./routes/Provider/providerRoutes.js");
 app.use("/auth", verifyToken, authRouter);

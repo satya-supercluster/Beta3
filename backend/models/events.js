@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
+
 const events = new mongoose.Schema({
   name: {
     type: String,
-    // required:true,
+    // required: true,
   },
   Date: {
     type: Date,
@@ -23,13 +24,25 @@ const events = new mongoose.Schema({
     ref: "Provider",
     required: true,
   },
-  location: {
-    type: String,
+  coordinates: {
+    lat: {
+      type: Number,
+      // required: true,
+    },
+    lon: {
+      type: Number,
+      // required: true,
+    },
   },
-  Duration: {
-    type: Number,
+  startTime: {
+    type: Date,
+    required: true,
+  },
+  endTime: {
+    type: Date,
+    required: true,
   },
 });
 
 const Events = mongoose.model("Events", events);
-module.exports=Events
+module.exports = Events;

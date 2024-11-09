@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
         const data = await res.json();
         setAuth(data.user);
         // console.log(data.user)
-        // localStorage.setItem("auth", JSON.stringify(authData));
+        localStorage.setItem("auth", JSON.stringify(data.user));
       } else {
         setAuth(null);
         localStorage.removeItem("auth");
@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.error("Mentor login error:", error);
       setAuth(null);
-      // localStorage.removeItem("auth");
+      localStorage.removeItem("auth");
       throw error;
     } finally {
       setIsLoading(false);
@@ -67,7 +67,7 @@ export const AuthProvider = ({ children }) => {
       .signOut()
       .then(() => {
         setAuth(null);
-        // localStorage.removeItem("auth");
+        localStorage.removeItem("auth");
         navigate("/");
       })
       .catch((error) => {
