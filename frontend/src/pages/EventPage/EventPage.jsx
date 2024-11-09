@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react';
 import EventCard from '../../components/eventCard/EventCard';
 
 const EventPage = () => {
@@ -55,18 +55,27 @@ const EventPage = () => {
         }
     ];
 
-    
-  return (
-    <div>
-        {
-            dummyEvents.map((event)=>{
-                return (
-                    <EventCard name={event.name} Date={event.Date} Venue={event.Venue} Quantity={event.Quantity} expectedWastage={event.expectedWastage} provider={event.provider} location={event.location} Duration={event.Duration} />
-                )   
-            })
-        }
-    </div>
-  )
+    return (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
+            {
+                dummyEvents.map((event, i) => {
+                    return (
+                        <EventCard 
+                            key={i} 
+                            name={event.name} 
+                            date={event.Date} 
+                            venue={event.Venue} 
+                            quantity={event.Quantity} 
+                            expectedWastage={event.expectedWastage} 
+                            provider={event.provider} 
+                            location={event.location} 
+                            duration={event.Duration} 
+                        />
+                    );
+                })
+            }
+        </div>
+    );
 }
 
-export default EventPage
+export default EventPage;

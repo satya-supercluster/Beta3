@@ -9,6 +9,7 @@ import ConsumerDashboard from "./pages/Consumer/ConsumerDashboard";
 const App = () => {
   return (
     <Routes>
+      <Route path='/event' element={<EventPage />} />
       <Route path="/" element={<Layout />}>
         <Route index element={<AuthenticatedRoute />} />
 
@@ -17,7 +18,7 @@ const App = () => {
         {/* Consumer Routes */}
         <Route path="/consumer/dashboard" element={<ConsumerDashboard />} />
       </Route>
-      <Route path="/*" element={<CatchAllRoutes />}></Route>
+      {/* <Route path="/*" element={<CatchAllRoutes />}></Route> */}
     </Routes>
   );
 };
