@@ -5,9 +5,11 @@ import Navbar from "../components/Header/Navbar";
 const Layout = () => {
   return (
     <div>
-        <Navbar/>
+      <Navbar />
+      <div className="max-md:mt-16">
         <Outlet />
-        {/* <Footer/> */}
+      </div>
+      {/* <Footer/> */}
     </div>
   );
 };

@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
       const result = await signInWithPopup(firebaseAuth, provider);
       if (result.user) {
         const createdToken = await result.user.getIdToken();
-        console.log(createdToken);
+        // console.log(createdToken);
         const res = await fetch(
           `${import.meta.env.VITE_SITE}/auth/${userType}`,
           {
@@ -45,6 +45,7 @@ export const AuthProvider = ({ children }) => {
         }
         const data = await res.json();
         setAuth(data.user);
+        // console.log(data.user)
         // localStorage.setItem("auth", JSON.stringify(authData));
       } else {
         setAuth(null);
@@ -54,7 +55,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.error("Mentor login error:", error);
       setAuth(null);
-      localStorage.removeItem("auth");
+      // localStorage.removeItem("auth");
       throw error;
     } finally {
       setIsLoading(false);
@@ -66,7 +67,7 @@ export const AuthProvider = ({ children }) => {
       .signOut()
       .then(() => {
         setAuth(null);
-        localStorage.removeItem("auth");
+        // localStorage.removeItem("auth");
         navigate("/");
       })
       .catch((error) => {
@@ -78,6 +79,7 @@ export const AuthProvider = ({ children }) => {
     if (auth === null && !isLoading) {
       navigate("/");
     }
+    // console.log(auth)
   }, [auth, navigate, isLoading]);
 
   return (

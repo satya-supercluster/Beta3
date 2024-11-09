@@ -1,47 +1,37 @@
-import React from 'react'
-import EventPage from './pages/EventPage/EventPage'
-import { Routes, Route } from "react-router-dom"
-import Layout from "./layout/Layout"
-import { useAuth } from './context/AuthContext'
-import { useUserType } from './context/UserTypeContext'
-import HeroSection from './pages/Hero/Hero'
-import Login from './pages/Login/Login'
+import React from "react";
+import EventPage from "./pages/EventPage/EventPage";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Layout from "./layout/Layout";
+import { useAuth } from "./context/AuthContext";
+import HeroSection from "./pages/Hero/Hero";
+import ProviderDashboard from "./pages/Provider/ProviderDashboard";
+import ConsumerDashboard from "./pages/Consumer/ConsumerDashboard";
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<AuthenticatedRoute />} />
 
-        {/* Producer Routes */}
-
+        {/* Provider Routes */}
+        <Route path="/provider/dashboard" element={<ProviderDashboard />} />
         {/* Consumer Routes */}
-        
+        <Route path="/consumer/dashboard" element={<ConsumerDashboard />} />
       </Route>
       <Route path="/*" element={<CatchAllRoutes />}></Route>
     </Routes>
   );
-}
+};
 
 const AuthenticatedRoute = () => {
   const { auth } = useAuth();
-  const { loginButton } = useUserType();
-  return !auth ? (
-    loginButton ? (
-      <Login />
-    ) : (
-      <HeroSection />
-    )
-  ) : (
-    <RedirectBasedOnUser />
-  );
+  return !auth ? <HeroSection /> : <RedirectBasedOnUser />;
 };
-  
+
 const CatchAllRoutes = () => {
   return <RedirectBasedOnUser />;
 };
 
 const RedirectBasedOnUser = () => {
-  const { loginButton } = useUserType();
   const { auth, logout, isLoading } = useAuth();
   if (isLoading) {
     return (
@@ -50,19 +40,18 @@ const RedirectBasedOnUser = () => {
       </div>
     );
   }
-  if (!auth) return loginButton ? <Login /> : <HeroSection />;
-  if (auth?.role === "producer") {
-    return <Navigate to="/producer/home" replace />;
+  if (!auth) return <HeroSection />;
+  if (auth?.role === "provider") {
+    return <Navigate to="/provider/dashboard" replace />;
   } else if (auth?.role === "consumer") {
-    return <Navigate to="/consumer/home" replace />;
+    return <Navigate to="/consumer/dashboard" replace />;
   } else {
     logout();
-    return loginButton ? <Login /> : <HeroSection />;
+    return <HeroSection />;
   }
 };
 
 const ProtectedRoute = ({ role, children }) => {
-  const { loginButton } = useUserType();
   const { auth, logout, isLoading } = useAuth();
   if (isLoading) {
     return (
@@ -74,7 +63,7 @@ const ProtectedRoute = ({ role, children }) => {
 
   if (!auth || auth?.role !== role) {
     logout();
-    return loginButton ? <Login /> : <HeroSection />;
+    return <HeroSection />;
   }
 
   return children;
