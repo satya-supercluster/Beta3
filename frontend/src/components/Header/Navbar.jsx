@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useUserType } from "../../context/UserTypeContext";
 import { NavLink } from "react-router-dom";
-const Navi = () => {
+const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { auth,logout } = useAuth();
-  const { setLoginButton, setUserType } = useUserType();
+  const { setLoginButton, setUserType,userType } = useUserType();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -82,7 +82,6 @@ const Navi = () => {
                   Home
                 </NavLink>
                 <NavLink
-                  to="/provider/profile"
                   className="text-white hover:text-gray-300 transition-colors"
                   onClick={() => setMenuOpen(false)}
                 >
@@ -130,4 +129,4 @@ const Navi = () => {
   );
 };
 
-export default Navi;
+export default Navbar;

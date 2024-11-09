@@ -22,7 +22,7 @@ const App = () => {
 
         {/* <Route path="/provider/get" element={<P />} /> */}
         {/* Consumer Routes */}
-        <Route path="/consumer/dashboard" element={<ConsumerDashboard />} />
+        <Route path="/consumer/dashboard" element={<ConsumerDashboard />} /> 
       </Route>
       <Route path="/*" element={<CatchAllRoutes />}></Route>
     </Routes>
