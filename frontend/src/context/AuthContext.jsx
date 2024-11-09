@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
         const createdToken = await result.user.getIdToken();
         console.log(createdToken);
         const res = await fetch(
-          `${import.meta.env.VITE_SITE}/api/login/${userType}`,
+          `${import.meta.env.VITE_SITE}/auth/${userType}`,
           {
             method: "POST",
             headers: {
@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
         }
         const data = await res.json();
         setAuth(data.user);
-        localStorage.setItem("auth", JSON.stringify(authData));
+        // localStorage.setItem("auth", JSON.stringify(authData));
       } else {
         setAuth(null);
         localStorage.removeItem("auth");

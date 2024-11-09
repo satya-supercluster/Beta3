@@ -1,6 +1,5 @@
-import { Provider } from "../../models/provider.js";
-
-export const authControllerProvider = async (req, res)=>{
+const Provider = require("../../models/provider.js");
+const authControllerProvider = async (req, res)=>{
     try {
         const { userId, email, picture, name } = req.user;
         const user = await Provider.findOne({email});
@@ -25,3 +24,4 @@ export const authControllerProvider = async (req, res)=>{
         })
     }
 }
+module.exports=authControllerProvider

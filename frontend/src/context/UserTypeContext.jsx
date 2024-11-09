@@ -5,7 +5,7 @@ const UserTypeContext = createContext();
 export const useUserType = () => useContext(UserTypeContext);
 
 export const UserTypeProvider = ({ children }) => {
-  const [userType, setUserType] = useState("Consumer");
+  const [userType, setUserType] = useState("consumer");
   const [loginButton, setLoginButton] = useState(false);
 
   return (

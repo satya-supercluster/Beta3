@@ -1,6 +1,5 @@
-import { Events } from "../../models/events"
-
-export const getEvents = async(req, res) =>{
+const Events = require("../../models/events.js");
+const getEvents = async(req, res) =>{
     try {
         const response = await Events.find({});
         if(response){
@@ -12,3 +11,4 @@ export const getEvents = async(req, res) =>{
         })
     }
 }
+module.exports = getEvents;

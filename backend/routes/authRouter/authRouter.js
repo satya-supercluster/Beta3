@@ -1,8 +1,9 @@
-import { Router } from "express";
-import { authControllerConsumer } from "../../controller/Consumer/authControllerConsumer.js";
-import { authControllerProvider } from "../../controller/Provider/authControllerProvider.js";
+const express = require("express");
+const authRouter = express.Router();
+const authControllerProvider = require("../../controller/Provider/authControllerProvider.js");
+const authControllerConsumer = require("../../controller/Consumer/authControllerConsumer.js");
 
-export const authRouter = Router();
+authRouter.use("/provider", authControllerProvider);
+authRouter.use("/consumer", authControllerConsumer);
 
-authRouter.post('/provider', authControllerProvider);
-authRouter.post('/consumer', authControllerConsumer);
+module.exports=authRouter

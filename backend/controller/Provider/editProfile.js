@@ -1,6 +1,5 @@
-import { Provider } from "../../models/provider.js";
-
-export const EditProfile = async (req, res)=>{
+const Provider = require("../../models/provider.js");
+const editProfile = async (req, res) => {
     try {
         const { email, name, location, contact  } = req.body;
         const updateProfile = await Provider.findOneAndUpdate({email},{
@@ -19,3 +18,4 @@ export const EditProfile = async (req, res)=>{
         })
     }
 }
+module.exports=editProfile

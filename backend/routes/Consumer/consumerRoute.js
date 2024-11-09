@@ -1,5 +1,5 @@
-import { Router } from "express";
-import { getEvents } from "../../controller/Consumer/getEvents.js";
+const express = require("express");
+const consumerRoute = express.Router();
 
-export const consumerRoute = Router();
-consumerRoute.get("/getevents", getEvents);
+consumerRoute.get("/getevents", );
+module.exports=consumerRoute

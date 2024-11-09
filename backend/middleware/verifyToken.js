@@ -1,6 +1,5 @@
-const admin = require("../config/firebase/firebase-config");
-
-// This is the Middleware to verify Firebase token
+const admin=require("../config/firebase/firebase-config.js")
+// This is theMiddleware to verify Firebase token
 const verifyToken = async (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
   if (!token) {
@@ -16,4 +15,4 @@ const verifyToken = async (req, res, next) => {
     res.status(403).json({ error: "Forbidden: Invalid token" });
   }
 };
-module.exports = verifyToken;
+module.exports=verifyToken
