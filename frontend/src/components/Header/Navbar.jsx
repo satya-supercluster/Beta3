@@ -75,69 +75,30 @@ const Navbar = () => {
           >
             {auth ? (
               <>
-                {userType === "consumer" ? (
-                  <>
-                    <NavLink
-                      to="/consumer/dashboard"
-                      className="text-white hover:text-gray-300 transition-colors"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      Dashboard
-                    </NavLink>
-                    <NavLink
-                      to="/consumer/profile"
-                      className="text-white hover:text-gray-300 transition-colors"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      Profile
-                    </NavLink>
-                    <NavLink
-                      to="/consumer/bites"
-                      className="text-white hover:text-gray-300 transition-colors"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      Bites
-                    </NavLink>
-                    <NavLink
-                      to="/consumer/donor"
-                      className="text-white hover:text-gray-300 transition-colors"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      Donor
-                    </NavLink>
-                  </>
-                ) : (
-                  <>
-                      <NavLink
-                        to="/provider/dashboard"
-                      className="text-white hover:text-gray-300 transition-colors"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      Dashboard
-                    </NavLink>
-                    <NavLink
-                      to="/provider/profile"
-                      className="text-white hover:text-gray-300 transition-colors"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      Profile
-                    </NavLink>
-                      <NavLink
-                        to="/provider/bites"
-                      className="text-white hover:text-gray-300 transition-colors"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      Bites
-                    </NavLink>
-                    <NavLink
-                      className="text-white hover:text-gray-300 transition-colors"
-                      onClick={() => setMenuOpen(false)}
-                    >
-                      Donate
-                    </NavLink>
-                  </>
-                )}
-
+                <NavLink
+                  className="text-white hover:text-gray-300 transition-colors"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Home
+                </NavLink>
+                <NavLink
+                  className="text-white hover:text-gray-300 transition-colors"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Profile
+                </NavLink>
+                <NavLink
+                  className="text-white hover:text-gray-300 transition-colors"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Bites
+                </NavLink>
+                <NavLink
+                  className="text-white hover:text-gray-300 transition-colors"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Contacts
+                </NavLink>
                 <button
                   className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors shadow-md"
                   onClick={() => {

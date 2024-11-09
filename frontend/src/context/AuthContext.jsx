@@ -37,6 +37,7 @@ export const AuthProvider = ({ children }) => {
               Authorization: `Bearer ${createdToken}`,
               "Content-Type": "application/json",
             },
+
           }
         );
         if (!res.ok) {
