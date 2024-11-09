@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useUserType } from "../../context/UserTypeContext";
-
+import { NavLink } from "react-router-dom";
 const Navi = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { auth,logout } = useAuth();
@@ -75,34 +75,30 @@ const Navi = () => {
           >
             {auth ? (
               <>
-                <a
-                  href="#home"
+                <NavLink
                   className="text-white hover:text-gray-300 transition-colors"
                   onClick={() => setMenuOpen(false)}
                 >
                   Home
-                </a>
-                <a
-                  href="#about"
+                </NavLink>
+                <NavLink
                   className="text-white hover:text-gray-300 transition-colors"
                   onClick={() => setMenuOpen(false)}
                 >
-                  About
-                </a>
-                <a
-                  href="#services"
+                  Profile
+                </NavLink>
+                <NavLink
                   className="text-white hover:text-gray-300 transition-colors"
                   onClick={() => setMenuOpen(false)}
                 >
-                  Services
-                </a>
-                <a
-                  href="#contact"
+                  Bites
+                </NavLink>
+                <NavLink
                   className="text-white hover:text-gray-300 transition-colors"
                   onClick={() => setMenuOpen(false)}
                 >
-                  Contact
-                </a>
+                  Contacts
+                </NavLink>
                 <button
                   className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors shadow-md"
                   onClick={() => {

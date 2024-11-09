@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }) => {
         throw new Error("Authentication failed");
       }
     } catch (error) {
-      console.error("Mentor login error:", error);
+      console.error("Login error:", error);
       setAuth(null);
       localStorage.removeItem("auth");
       throw error;
