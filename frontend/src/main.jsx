@@ -12,7 +12,7 @@ createRoot(document.getElementById("root")).render(
       <UserTypeProvider>
         <AuthProvider>
           <DataProvider>
-            <App />
+            <App className="bg-gray-50" />
           </DataProvider>
         </AuthProvider>
       </UserTypeProvider>

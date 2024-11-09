@@ -30,8 +30,8 @@ const consumerRoute = require("./routes/Consumer/consumerRoutes.js");
 const authRouter = require("./routes/authRouter/authRouter.js");
 const providerRoute = require("./routes/Provider/providerRoutes.js");
 app.use("/auth", verifyToken, authRouter);
-app.use("/consumer", verifyToken, consumerRoute);
-app.use("/provider", verifyToken, providerRoute);
+app.use("/consumer", consumerRoute);
+app.use("/provider", providerRoute);
 
 // Listening the server
 app.listen(process.env.PORT, () => {
