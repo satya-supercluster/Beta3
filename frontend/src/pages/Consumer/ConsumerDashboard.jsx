@@ -1,150 +1,103 @@
-import React, { useState } from "react";
-import { Calendar, Clock, MapPin, Search, Filter, Star } from "lucide-react";
+import React from "react";
+import {
+  ArrowRight,
+  Check,
+  Leaf,
+  DollarSign,
+  CalendarClock,
+} from "lucide-react";
 
 const ConsumerDashboard = () => {
-  const [providers, setProviders] = useState([
+  const features = [
     {
-      id: 1,
-      name: "Grand Hotel Kitchen",
-      rating: 4.5,
-      location: "MG Road, Bangalore",
-      distance: "1.2 km",
-      subscriptions: [
-        {
-          id: 1,
-          name: "Regular Lunch Plan",
-          price: 100,
-          discountedPrice: 70,
-          time: "12:00 PM - 2:00 PM",
-          available: 5,
-          type: "Daily",
-        },
-      ],
-      surplusAvailable: true,
+      title: "Track Your Food",
+      description: "Log and monitor your food inventory with expiration dates",
+      icon: <CalendarClock className="w-6 h-6 text-green-600" />,
     },
     {
-      id: 2,
-      name: "College Mess",
-      rating: 4.2,
-      location: "HSR Layout, Bangalore",
-      distance: "0.8 km",
-      subscriptions: [
-        {
-          id: 2,
-          name: "Dinner Plan",
-          price: 80,
-          discountedPrice: 55,
-          time: "7:00 PM - 9:00 PM",
-          available: 8,
-          type: "Daily",
-        },
-      ],
-      surplusAvailable: false,
+      title: "Save Money",
+      description: "Reduce food wastage by utilizing what you have",
+      icon: <DollarSign className="w-6 h-6 text-green-600" />,
     },
-  ]);
-
-  const [selectedProvider, setSelectedProvider] = useState(null);
+    {
+      title: "Help The Planet",
+      description: "Minimize your environmental impact by reducing waste",
+      icon: <Leaf className="w-6 h-6 text-green-600" />,
+    },
+  ];
 
   return (
-    <div className="md:mt-24 min-h-screen bg-gray-50">
-      {/* Search Header */}
-      <div className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-            <div className="flex-1 relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Search className="h-5 w-5 text-gray-400" />
-              </div>
-              <input
-                type="text"
-                className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm"
-                placeholder="Search by location..."
-              />
+    <div>
+      <div className="bg-white">
+        <div className="max-w-6xl mx-auto px-4 py-16">
+          <div className="text-center">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Reduce Food Waste, Save Money
+            </h1>
+            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+              Track your food, get reminded before they expire, and join
+              the movement to reduce food waste.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <button className="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 flex items-center justify-center">
+                Start Saving Now
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </button>
+              <button className="border border-green-600 text-green-600 px-8 py-3 rounded-lg hover:bg-green-50">
+                Watch Demo
+              </button>
             </div>
-            <button className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
-              <Filter className="h-5 w-5 mr-2 text-gray-400" />
-              Filters
-            </button>
           </div>
         </div>
       </div>
-
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          {providers.map((provider) => (
-            <div
-              key={provider.id}
-              className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200"
-            >
-              <div className="p-6">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h3 className="text-lg font-medium text-gray-900">
-                      {provider.name}
-                    </h3>
-                    <div className="flex items-center mt-1">
-                      <Star className="h-4 w-4 text-yellow-400" />
-                      <span className="ml-1 text-sm text-gray-600">
-                        {provider.rating}
-                      </span>
-                    </div>
-                  </div>
-                  {provider.surplusAvailable && (
-                    <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                      Surplus Available
-                    </span>
-                  )}
-                </div>
-
-                <div className="mt-4 flex items-center text-sm text-gray-500">
-                  <MapPin className="flex-shrink-0 mr-1.5 h-4 w-4 text-gray-400" />
-                  <span>
-                    {provider.location} • {provider.distance}
-                  </span>
-                </div>
-
-                <div className="mt-6">
-                  <h4 className="text-sm font-medium text-gray-900">
-                    Available Subscriptions
-                  </h4>
-                  <div className="mt-2 space-y-4">
-                    {provider.subscriptions.map((sub) => (
-                      <div key={sub.id} className="border rounded-lg p-4">
-                        <div className="flex justify-between items-start">
-                          <div>
-                            <h5 className="text-sm font-medium text-gray-900">
-                              {sub.name}
-                            </h5>
-                            <p className="mt-1 text-sm text-gray-500">
-                              <Clock className="inline-block h-4 w-4 mr-1" />
-                              {sub.time}
-                            </p>
-                          </div>
-                          <div className="text-right">
-                            <p className="text-sm text-gray-500 line-through">
-                              ₹{sub.price}
-                            </p>
-                            <p className="text-sm font-medium text-emerald-600">
-                              ₹{sub.discountedPrice}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="mt-4 flex justify-between items-center">
-                          <span className="text-xs text-gray-500">
-                            {sub.available} slots available
-                          </span>
-                          <button className="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-emerald-600 hover:bg-emerald-700">
-                            Subscribe
-                          </button>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+      <div id="features" className="py-16 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Why Choose BiteMe?
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <div key={index} className="bg-white p-6 rounded-lg shadow-sm">
+                <div className="mb-4">{feature.icon}</div>
+                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                <p className="text-gray-600">{feature.description}</p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+        </div>
+      </div>
+      <div id="how-it-works" className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              "Scan your groceries or add them manually",
+              "Get notifications before food expires",
+              "Track your savings and environmental impact",
+            ].map((step, index) => (
+              <div key={index} className="flex items-start">
+                <div className="flex-shrink-0 mr-4">
+                  <div className="flex items-center justify-center w-8 h-8 rounded-full bg-green-100 text-green-600">
+                    <Check className="w-5 h-5" />
+                  </div>
+                </div>
+                <p className="text-lg text-gray-700">{step}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="bg-green-600 text-white py-16">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-4">
+            Ready to Reduce Food Waste?
+          </h2>
+          <p className="text-xl mb-8">
+            Join thousands of users making a difference.
+          </p>
+          <button className="bg-white text-green-600 px-8 py-3 rounded-lg hover:bg-gray-100">
+            Join Now
+          </button>
         </div>
       </div>
     </div>

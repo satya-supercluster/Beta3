@@ -7,6 +7,8 @@ import HeroSection from "./pages/Hero/Hero";
 import ProviderDashboard from "./pages/Provider/ProviderDashboard";
 import ConsumerDashboard from "./pages/Consumer/ConsumerDashboard";
 import ProfilePreview from "./pages/Profile/Profile";
+import ConsumerBites from "./pages/Consumer/ConsumerBites";
+import ConsumerDonor from "./pages/Consumer/ConsumerDono";
 // import ProducerCards from "./DistanceCalcu/lator";
 const App = () => {
   return (
@@ -23,6 +25,11 @@ const App = () => {
         {/* <Route path="/provider/get" element={<P />} /> */}
         {/* Consumer Routes */}
         <Route path="/consumer/dashboard" element={<ConsumerDashboard />} /> 
+        <Route path="/consumer/bites" element={<ConsumerBites />} /> 
+        <Route path="/consumer/profile" element={<ProfilePreview />} /> 
+        <Route path="/consumer/donor" element={<ConsumerDonor />} /> 
+        
+
       </Route>
       <Route path="/*" element={<CatchAllRoutes />}></Route>
     </Routes>

@@ -3,7 +3,7 @@ const getEvents = async(req, res) =>{
     try {
         const response = await Events.find({});
         if(response){
-            return res.status(200).json(response);
+            return res.status(200).json({response:response});
         }
     } catch (error) {
         return res.status(500).json({
