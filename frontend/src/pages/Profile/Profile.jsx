@@ -6,7 +6,7 @@ const ProfilePreview = () => {
   const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("auth")));
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState(userData);
-  const userType = useUserType();
+  const { userType } = useUserType();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (e) => {
@@ -32,12 +32,11 @@ const ProfilePreview = () => {
   };
 
   const updateUserData = async()=>{
+    console.log("userdata is ", userData);
     try {
-        const createdToken = localStorage.getItem("token");
-        const response = await fetch(`${import.meta.env.VITE_SITE}/auth/${userType}`,{
+        const response = await fetch(`${import.meta.env.VITE_SITE}/${userType}/editProfile`,{
             method: "PUT",
             headers: {
-              Authorization: `Bearer ${createdToken}`,
               "Content-Type": "application/json",
             },
             body: JSON.stringify(userData)

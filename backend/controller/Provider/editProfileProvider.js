@@ -1,7 +1,8 @@
 const Provider = require("../../models/provider.js");
-const editProfile = async (req, res) => {
+const editProfileProvider = async (req, res) => {
     try {
         const { email, name, location, contact  } = req.body;
+        console.log(req.body);
         const updateProfile = await Provider.findOneAndUpdate({email},{
             name,
             location,
@@ -18,4 +19,4 @@ const editProfile = async (req, res) => {
         })
     }
 }
-module.exports=editProfile
+module.exports=editProfileProvider

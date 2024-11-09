@@ -82,6 +82,7 @@ const Navi = () => {
                   Home
                 </NavLink>
                 <NavLink
+                  to="/provider/profile"
                   className="text-white hover:text-gray-300 transition-colors"
                   onClick={() => setMenuOpen(false)}
                 >
