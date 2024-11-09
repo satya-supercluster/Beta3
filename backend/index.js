@@ -1,20 +1,19 @@
 // Requires
-import express from "express";
-import dotenv from "dotenv";
-import morgan from "morgan";
-import bodyParser from "body-parser";
-import cors from "cors";
+const express = require("express"),
+  app = express();
+const dotenv = require("dotenv");
 dotenv.config();
-const app = express();
+const morgan = require("morgan");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
 // Mongoose Connection
-import {connectDB} from "./config/mongo/mongo-con.js";
+const connectDB = require("./config/mongo/mongo-con.js");
 connectDB();
 // Checking the server
 app.get("/", (req, res) => {
   res.send("Everything is alright");
 });
-
 
 // Cross Origin Policy
 app.use(cors());
@@ -23,6 +22,16 @@ app.use(cors());
 app.use(morgan("tiny"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+const verifyToken = require("./middleware/verifyToken.js");
+
+
+//Routes
+const consumerRoute = require("./routes/Consumer/consumerRoute.js");
+const authRouter = require("./routes/authRouter/authRouter.js");
+const providerRoute = require("./routes/Provider/providerRoutes.js");
+app.use("/auth", verifyToken, authRouter);
+app.use("/consumer", verifyToken, consumerRoute);
+app.use("/provider", verifyToken, providerRoute);
 
 // Listening the server
 app.listen(process.env.PORT, () => {

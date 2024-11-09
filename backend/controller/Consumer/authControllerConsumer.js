@@ -1,6 +1,5 @@
-import { Consumer } from "../../models/consumer.js";
-
-export const authControllerConsumer = async (req, res)=>{
+const Consumer=require("../../models/consumer.js")
+const authControllerConsumer = async (req, res)=>{
     try {
         const { email, picture, name } = req.user;
         const user = await Consumer.findOne({email});
@@ -25,3 +24,4 @@ export const authControllerConsumer = async (req, res)=>{
         })
     }
 }
+module.exports = authControllerConsumer;

@@ -1,7 +1,11 @@
-import { Router } from "express";
-import { authRouter } from "./authRouter/authRouter";
+const express = require("express");
+const router = express.Router();
 
+const consumerRoute = require("./Consumer/consumerRoute.js");
+const authRouter = require("./authRouter/authRouter.js");
+const providerRoute = require("./Provider/providerRoutes.js");
 
-export const route = Router();
-route.use("/auth", authRouter);
-route.use("/provider", providerRoute);
+router.use("/auth", authRouter);
+router.use("/provider", providerRoute);
+router.use("/consumer", consumerRoute);
+module.export = router;

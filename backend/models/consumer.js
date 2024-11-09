@@ -1,5 +1,4 @@
-import mongoose from 'mongoose'
-
+const mongoose = require("mongoose");
 const consumer = new mongoose.Schema({
     name:{
         type:String,
@@ -23,4 +22,5 @@ const consumer = new mongoose.Schema({
     }
 });
 
-export const Consumer = mongoose.model("Consumer", consumer); 
+const Consumer = mongoose.model("Consumer", consumer); 
+module.exports=Consumer

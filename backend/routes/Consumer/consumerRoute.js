@@ -1,7 +1,5 @@
-import { Router } from "express";
-import { getEvents } from "../../controller/Consumer/getEvents.js";
-import { authControllerConsumer } from "../../controller/Consumer/authControllerConsumer.js";
+const express = require("express");
+const consumerRoute = express.Router();
 
-export const consumerRoute = Router();
-consumerRoute.get("/getevents", getEvents);
-consumerRoute.post('/', authControllerConsumer);
+consumerRoute.get("/getevents", );
+module.exports=consumerRoute
