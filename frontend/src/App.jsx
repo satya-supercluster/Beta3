@@ -6,6 +6,7 @@ import { useAuth } from "./context/AuthContext";
 import HeroSection from "./pages/Hero/Hero";
 import ProviderDashboard from "./pages/Provider/ProviderDashboard";
 import ConsumerDashboard from "./pages/Consumer/ConsumerDashboard";
+import ProfilePreview from "./pages/Profile/Profile";
 // import ProducerCards from "./DistanceCalcu/lator";
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
 
         {/* Provider Routes */}
         <Route path="/provider/dashboard" element={<ProviderDashboard />} />
+        <Route path="/provider/profile" element={<ProfilePreview />} />
         
 
         {/* <Route path="/provider/get" element={<P />} /> */}
