@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
       const result = await signInWithPopup(firebaseAuth, provider);
       if (result.user) {
         const createdToken = await result.user.getIdToken();
-        console.log(createdToken);
+        // console.log(createdToken);
         const res = await fetch(
           `${import.meta.env.VITE_SITE}/auth/${userType}`,
           {
@@ -45,7 +45,8 @@ export const AuthProvider = ({ children }) => {
         }
         const data = await res.json();
         setAuth(data.user);
-        // localStorage.setItem("auth", JSON.stringify(authData));
+        // console.log(data.user)
+        localStorage.setItem("auth", JSON.stringify(data.user));
       } else {
         setAuth(null);
         localStorage.removeItem("auth");
@@ -78,6 +79,7 @@ export const AuthProvider = ({ children }) => {
     if (auth === null && !isLoading) {
       navigate("/");
     }
+    // console.log(auth)
   }, [auth, navigate, isLoading]);
 
   return (
