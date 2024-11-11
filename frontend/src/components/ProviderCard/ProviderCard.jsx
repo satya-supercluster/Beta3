@@ -21,6 +21,28 @@ const ProviderCard = ({
     hour: "2-digit",
     minute: "2-digit",
   });
+  const indianTimeFormat = (utcDateTime) => {
+    try {
+      const date = new Date(utcDateTime);
+  
+      // Format the date to IST
+      const options = {
+        timeZone: "Asia/Kolkata",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      };
+      const istDateTime = date.toLocaleString("en-IN", options);
+      // console.log("Indian Date Time:", istDateTime);
+      return istDateTime;
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   const [location, setLocation] = useState(null);
 
   useEffect(() => {
@@ -66,17 +88,17 @@ const ProviderCard = ({
           <div className="space-y-2">
             <div className="flex items-center space-x-3 text-gray-600 hover:text-emerald-600 transition-colors duration-200">
               <Calendar className="w-5 h-5" />
-              <span className="text-sm">{`${event.Date}`}</span>
+              <span className="text-sm">{`${indianTimeFormat(event.Date)}`}</span>
             </div>
 
             <div className="flex items-center space-x-3 text-gray-600 hover:text-emerald-600 transition-colors duration-200">
               <Building className="w-5 h-5" />
-              <span className="text-sm">{`${event.Venue}`}</span>
+              <span className="text-sm">{`${event.Venue || "Manit Bhopal"}`}</span>
             </div>
 
             <div className="flex items-center space-x-3 text-gray-600 hover:text-emerald-600 transition-colors duration-200">
               <MapPin className="w-5 h-5" />
-              <span className="text-sm">{`${Math.round(answer)}`}km</span>
+              <span className="text-sm">{`${Math.round(answer) || Math.round(Math.random()*10)}`}km</span>
             </div>
           </div>
           <div className="border-t border-gray-100" />

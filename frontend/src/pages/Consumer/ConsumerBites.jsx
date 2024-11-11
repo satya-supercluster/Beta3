@@ -2,7 +2,7 @@ import React from "react";
 import ProviderCard from "../../components/ProviderCard/ProviderCard";
 import { useData } from "../../context/DataContext";
 const ConsumerBites = () => {
-  const { events } = useData();
+  const { byteEvents } = useData();
   return (
     <div className="container mx-auto p-4">
       <h1
@@ -14,8 +14,8 @@ const ConsumerBites = () => {
 
       {/* Responsive grid layout */}
       <div className="grid gap-x-6 gap-y-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {events &&
-          events.map((event, index) => (
+        {byteEvents &&
+          byteEvents.map((event, index) => (
             <ProviderCard
               key={index}
               event={event}
