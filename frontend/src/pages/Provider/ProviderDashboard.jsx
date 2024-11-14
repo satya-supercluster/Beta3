@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
 import {
   Calendar,
   Clock,
@@ -10,22 +11,52 @@ import {
   TrendingUp,
 } from "lucide-react";
 import AddEvent from "../../components/AddProviderEvent/AddEvent";
+import { useUserType } from "../../context/UserTypeContext";
 
 const ProviderDashboard = () => {
+  const { userType } = useUserType();
+  const indianTimeFormat = (utcDateTime) => {
+    try {
+      const date = new Date(utcDateTime);
+  
+      // Format the date to IST
+      const options = {
+        timeZone: "Asia/Kolkata",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      };
+      const istDateTime = date.toLocaleString("en-IN", options);
+      // console.log("Indian Date Time:", istDateTime);
+      return istDateTime;
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  const fetchEventsData = async() =>{
+    try {
+      const {id} = localStorage.getItem("auth");
+      const response = await axios.get(`${import.meta.env.VITE_SITE}/${userType}/getevents`,{
+        headers:{
+          Authorization:"Bearer " + localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        }
+      });
+      const { events, subscribers } = response.data;
+      setSubscriptions(events);
+    } catch (error) {
+      console.log(error.meesage);
+    }
+  }
+  useEffect(()=>{
+    fetchEventsData();
+  },[])
   const [showForm, setShowForm] = useState(false);
-  const [subscriptions, setSubscriptions] = useState([
-    {
-      id: 1,
-      name: "Regular Lunch Plan",
-      price: 100,
-      discountedPrice: 70,
-      maxSubscribers: 30,
-      currentSubscribers: 25,
-      time: "12:00 PM - 2:00 PM",
-      description: "Daily lunch surplus from our kitchen",
-      type: "Daily",
-    },
-  ]);
+  const [subscriptions, setSubscriptions] = useState([]);
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -80,9 +111,9 @@ const ProviderDashboard = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {subscriptions.map((plan) => (
+            {subscriptions?.map((plan) => (
               <div
-                key={plan.id}
+                key={plan._id}
                 className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
               >
                 <div className="p-4">
@@ -98,7 +129,7 @@ const ProviderDashboard = () => {
 
                     <div className="flex items-center text-sm text-gray-500 mb-2">
                       <Clock className="h-4 w-4 mr-1.5 text-gray-400" />
-                      {plan.time}
+                      {indianTimeFormat(plan.startTime)}
                     </div>
 
                     <div className="flex flex-col space-y-2 mt-auto">

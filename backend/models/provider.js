@@ -29,6 +29,10 @@ const provider = new mongoose.Schema({
   avatar: {
     type: String,
   },
+  subscribers:{
+    type:Number,
+    default:0
+  }
 });
 
 const Provider = mongoose.model("Provider", provider);

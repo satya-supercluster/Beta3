@@ -28,7 +28,8 @@ export const AuthProvider = ({ children }) => {
       const result = await signInWithPopup(firebaseAuth, provider);
       if (result.user) {
         const createdToken = await result.user.getIdToken();
-        // console.log(createdToken);
+        localStorage.setItem("token", createdToken);
+        console.log("created token ",createdToken);
         const res = await fetch(
           `${import.meta.env.VITE_SITE}/auth/${userType}`,
           {
