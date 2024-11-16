@@ -12,9 +12,11 @@ import {
 } from "lucide-react";
 import AddEvent from "../../components/AddProviderEvent/AddEvent";
 import { useUserType } from "../../context/UserTypeContext";
+import { useData } from "../../context/DataContext";
 
 const ProviderDashboard = () => {
   const { userType } = useUserType();
+  const { fetchProviderEventsData, providerEvents, subscribers } = useData();
   const indianTimeFormat = (utcDateTime) => {
     try {
       const date = new Date(utcDateTime);
@@ -37,26 +39,11 @@ const ProviderDashboard = () => {
       console.log(error.message);
     }
   };
-  const fetchEventsData = async() =>{
-    try {
-      const {id} = localStorage.getItem("auth");
-      const response = await axios.get(`${import.meta.env.VITE_SITE}/${userType}/getevents`,{
-        headers:{
-          Authorization:"Bearer " + localStorage.getItem("token"),
-          "Content-Type": "application/json",
-        }
-      });
-      const { events, subscribers } = response.data;
-      setSubscriptions(events);
-    } catch (error) {
-      console.log(error.meesage);
-    }
-  }
   useEffect(()=>{
-    fetchEventsData();
+    fetchProviderEventsData();
   },[])
   const [showForm, setShowForm] = useState(false);
-  const [subscriptions, setSubscriptions] = useState([]);
+  // const [subscriptions, setSubscriptions] = useState([]);
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -111,7 +98,7 @@ const ProviderDashboard = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {subscriptions?.map((plan) => (
+            {providerEvents?.map((plan) => (
               <div
                 key={plan._id}
                 className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"

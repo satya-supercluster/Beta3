@@ -1,8 +1,11 @@
-import React from "react";
+import { useEffect } from "react";
 import ProviderCard from "../../components/ProviderCard/ProviderCard";
 import { useData } from "../../context/DataContext";
 const ConsumerBites = () => {
-  const { byteEvents } = useData();
+  const { fetchByteEvents ,byteEvents } = useData();
+  useEffect(()=>{
+    fetchByteEvents();
+  },[])
   return (
     <div className="container mx-auto p-4">
       <h1

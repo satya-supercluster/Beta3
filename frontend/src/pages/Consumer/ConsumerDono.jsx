@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProviderCard from "../../components/ProviderCard/ProviderCard";
 import { useData } from "../../context/DataContext";
 const ConsumerDonor = () => {
-    const { donorEvents } = useData();
+    const { fetchDonorEvents,donorEvents } = useData();
+    useEffect(()=>{
+      fetchDonorEvents();
+    },[])
     const data = useData();
     // console.log("donorEvents: ", data)
   return (
